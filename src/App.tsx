@@ -93,7 +93,7 @@ function App() {
           </p>
           <div className="flex justify-center mt-4 space-x-4 text-xl">
             <a
-              href="https://www.linkedin.com/in/mohd-rizwaan-ansari-99b2ab277/"
+              href="https://www.linkedin.com/in/ujjwallsrivastavaa/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition"
@@ -101,7 +101,7 @@ function App() {
               <Linkedin />
             </a>
             <a
-              href="https://github.com/wrizzzlerrr"
+              href="https://github.com/ujjwallsrivastavaa"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition"

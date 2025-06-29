@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Shield, FileText, Type } from 'lucide-react';
+import { Shield, FileText, Type, Github, Linkedin } from 'lucide-react';
 import TextCrypto from './components/TextCrypto';
 import FileCrypto from './components/FileCrypto';
 import StatusAlert from './components/StatusAlert';
@@ -29,8 +29,10 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
+      {/* Background pattern */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%239C92AC%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
-      
+
+      {/* Main container */}
       <div className="relative z-10 container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
@@ -75,7 +77,7 @@ function App() {
           </div>
         </div>
 
-        {/* Content */}
+        {/* Tab Content */}
         <div className="max-w-4xl mx-auto">
           {activeTab === 'text' ? (
             <TextCrypto onStatusChange={showAlert} />
@@ -84,12 +86,30 @@ function App() {
           )}
         </div>
 
-        {/* Footer
+        {/* Footer */}
         <div className="text-center mt-12 text-gray-400">
           <p className="text-sm">
             Powered by industry-standard encryption algorithms • Built with security in mind
           </p>
-        </div> */}
+          <div className="flex justify-center mt-4 space-x-4 text-xl">
+            <a
+              href="https://www.linkedin.com/in/mohd-rizwaan-ansari-99b2ab277/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition"
+            >
+              <Linkedin />
+            </a>
+            <a
+              href="https://github.com/wrizzzlerrr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition"
+            >
+              <Github />
+            </a>
+          </div>
+        </div>
       </div>
 
       {/* Status Alerts */}

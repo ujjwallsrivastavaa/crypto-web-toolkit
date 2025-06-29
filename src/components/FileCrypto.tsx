@@ -17,7 +17,11 @@ const FileCrypto: React.FC<FileCryptoProps> = ({ onStatusChange }) => {
   const [resultIv, setResultIv] = useState('');
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
-  const API_BASE_URL = 'http://localhost:5000';
+  const API_BASE_URL =
+  window.location.hostname === 'localhost'
+    ? import.meta.env.VITE_DEV_API_BASE_URL
+    : import.meta.env.VITE_PROD_API_BASE_URL;
+
 
   const copyToClipboard = async (text: string, field: string) => {
     try {

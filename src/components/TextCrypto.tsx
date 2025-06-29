@@ -17,7 +17,11 @@ const TextCrypto: React.FC<TextCryptoProps> = ({ onStatusChange }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
-  const API_BASE_URL = 'http://localhost:5000';
+  const API_BASE_URL =
+    window.location.hostname === 'localhost'
+      ? import.meta.env.VITE_DEV_API_BASE_URL
+      : import.meta.env.VITE_PROD_API_BASE_URL;
+
 
   const copyToClipboard = async (text: string, field: string) => {
     try {
@@ -41,7 +45,7 @@ const TextCrypto: React.FC<TextCryptoProps> = ({ onStatusChange }) => {
       });
 
       const data = await response.json();
-      
+
       if (data.success) {
         setKey(data.key);
         onStatusChange(`Generated ${algorithm} key successfully`, 'success');
@@ -60,7 +64,7 @@ const TextCrypto: React.FC<TextCryptoProps> = ({ onStatusChange }) => {
       onStatusChange('Please enter text to encrypt', 'error');
       return;
     }
-    
+
     if (!key.trim()) {
       onStatusChange('Please enter or generate a key', 'error');
       return;
@@ -88,7 +92,7 @@ const TextCrypto: React.FC<TextCryptoProps> = ({ onStatusChange }) => {
       });
 
       const data = await response.json();
-      
+
       if (data.success) {
         setResult(data.ciphertext);
         setResultIv(data.iv || '');
@@ -108,7 +112,7 @@ const TextCrypto: React.FC<TextCryptoProps> = ({ onStatusChange }) => {
       onStatusChange('Please enter ciphertext to decrypt', 'error');
       return;
     }
-    
+
     if (!key.trim()) {
       onStatusChange('Please enter the decryption key', 'error');
       return;
@@ -136,7 +140,7 @@ const TextCrypto: React.FC<TextCryptoProps> = ({ onStatusChange }) => {
       });
 
       const data = await response.json();
-      
+
       if (data.success) {
         setResult(data.plaintext);
         onStatusChange('Text decrypted successfully', 'success');
@@ -155,7 +159,7 @@ const TextCrypto: React.FC<TextCryptoProps> = ({ onStatusChange }) => {
       {/* Input Section */}
       <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
         <h3 className="text-lg font-semibold text-white mb-4">Input</h3>
-        
+
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-200 mb-2">
@@ -188,7 +192,7 @@ const TextCrypto: React.FC<TextCryptoProps> = ({ onStatusChange }) => {
       {/* Configuration Section */}
       <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
         <h3 className="text-lg font-semibold text-white mb-4">Configuration</h3>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-200 mb-2">
@@ -304,7 +308,7 @@ const TextCrypto: React.FC<TextCryptoProps> = ({ onStatusChange }) => {
       {result && (
         <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
           <h3 className="text-lg font-semibold text-white mb-4">Result</h3>
-          
+
           <div className="space-y-4">
             <div>
               <div className="flex items-center justify-between mb-2">
